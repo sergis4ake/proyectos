@@ -1,0 +1,37 @@
+#parse("templates/comun/cabecera.htm")
+#parse("templates/comun/aviso.htm")
+
+<h2>Subasta $subasta.Id - $subasta.Titulo</h2>
+
+<div name="contenedor">
+
+    #foreach($lote in $subasta.Lotes)
+    <div name="loteCompleto">
+        <div name="loteDetalle">
+            <span name="loteNombre">$lote.Id - $lote.Titulo</span>
+
+            <span name="lotePrecio">Precio base: $lote.Precio</span>
+            <div name="lotePujas">
+                <p>Pujas:</p>
+                <ul>
+                    #foreach($puja in $lote.Pujas)
+                        <li>$puja.Valor</li>
+                    #end
+                </ul>
+            </div>
+        </div>
+
+        <div name="imagenLote">Aquí va la imagen del lote.</div>
+
+        <div name="loteForm">
+            <form action="subasta" method="post">
+                <input type="hidden" name="idLote" value=$lote.Id >
+                <input type="text" name="valorPuja">
+                <input type="submit" name="botonPuja" value="Pujar">
+            </form>
+        </div>
+    </div>
+    <br/>
+    #end
+
+</div>

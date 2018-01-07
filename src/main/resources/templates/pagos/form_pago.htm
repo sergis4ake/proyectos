@@ -1,0 +1,61 @@
+#parse("templates/comun/cabecera.htm")
+#parse("templates/comun/aviso.htm")
+
+<h1> Auctions of antique bills and coins </h1>
+<div name="contenedor">
+    <span>Please enter your payment details:</span>
+    <form action="pagar" id="forms" method="post">
+
+        <span>Card Details</span>
+        <div name="formMetodoPago">
+            <span>Payment method </span>
+                <input type="radio" name="tipoPago" id="visa" value="VISA">
+                <label for="visa">VISA</label>
+                <input type="radio" name="tipoPago" id="master" value="Mastercard">S
+                <label for="master">Master Card</label>
+
+            <label for="cardnum">Card Number</label>
+                <input type="number" id="cardnum" name="cardnum">
+            <label for="segnum">Security no</label>
+                <input type="number" id="segnum" name="segnum">
+            <label for="nomcard">Name on card</label>
+                <input type="text" id="nomcard" name="nomcard">
+        </div>
+        <br/>
+        <div name="formBilling">
+            <span>Billing address:</span>
+            <label for="nombrePago">Name</label>
+                <input type="text" id="nombrePago" name="nombrePago">
+            <label for="apellidoPago">Surname</label>
+                <input type="text" id="apellidoPago" name="apellidoPago">
+            <label for="callePago">Street</label>
+                <input type="text" id="callePago" name="callePago">
+            <label for="numeroPago">No</label>
+                <input type="text" id="numeroPago" name="numeroPago">
+            <label for="codPostalPago">Zipcode</label>
+                <input type="text" id="codPostalPago" name="codPostalPago">
+            <label for="ciudadPago">City</label>
+                <input type="text" id="ciudadPago" name="ciudadPago">
+        </div>
+        <br/>
+        <div name="formDelivery">
+            <span>Delivery address:</span>
+            <label for="nombreEnt">Name</label>
+                <input type="text" id="nombreEnt" name="nombreEnt">
+            <label for="apellidoEnt">Surname</label>
+                <input type="text" id="apellidoEnt" name="apellidoEnt">
+            <label for="calleEnt">Street</label>
+                <input type="text" id="calleEnt" name="calleEnt">
+            <label for="numeroEnt">No:</label>
+                <input type="text" id="numeroEnt" name="numeroEnt">
+            <label for="codPostalEnt">Zipcode</label>
+                <input type="text" id="codPostalEnt" name="codPostalEnt">
+            <label for="ciudadEnt">City</label>
+                <input type="text" id="ciudadEnt" name="ciudadEnt">
+        </div>
+        <br/>
+        <div name="formButton">
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</div>

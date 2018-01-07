@@ -1,0 +1,49 @@
+#parse("templates/comun/aviso.htm")
+
+<div name="contenedor">
+    <form enctype="multipart/form-data" method="post" action="subirLote">
+
+        <label for="subasta">Subasta</label><br />
+        <select id="subasta" name="subasta">
+            #foreach ($subasta in $subastas)
+                <option value=$subasta.Id>$subasta.Titulo</option>
+            #end
+        </select>
+
+        <label for="lote">Lote</label><br />
+        <input id="lote" name="lote" type="text" placeholder="Type Here" >
+
+        <label for="valor">Valor</label><br />
+        <input id="valor" name="valor" type="text" placeholder="Type Here">
+
+        <label for="anio">Año</label><br />
+        <input id="anio" name="anio" type="text" placeholder="Type Here">
+
+        <label for="lugar">Lugar de emisión</label><br />
+        <input id="lugar" name="lugar" type="text" placeholder="Type Here">
+
+        <label for="fecha">Fecha</label><br />
+        <input id="fecha" name="fecha" type="date">
+
+        <label for="serie">Serie</label><br />
+        <input id="serie" name="serie" type="text" placeholder="Type Here">
+
+        <label for="conservacion">Conservación</label><br />
+        <select id="conservacion" name="conservacion">
+            <option value="0">BC</option>
+            <option value="1">MBC</option>
+            <option value="2">EBC</option>
+            <option value="3">SC</option>
+        </select>
+
+        <label for="precio">Precio</label><br />
+        <input id="precio" name="precio" type="text" placeholder="Type Here">
+
+        <label for="foto">Foto</label><br />
+        <input type="file" name="foto" id="foto">
+        <output id="fotoInfo"></output>
+        <br />
+        <input id="enviar" name="enviar" type="submit" value="Enviar">
+
+    </form>
+</div>
