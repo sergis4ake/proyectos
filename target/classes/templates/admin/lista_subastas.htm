@@ -8,6 +8,8 @@
     #foreach( $subasta in $subastas )
     <div name="subastaCompleta">
         <span name="subastaTitulo">$subasta.Id - <a href="$subasta.Link">$subasta.Titulo</a></span>
+        <span name="subastaLink"><a href="$subasta.LinkEdit">Editar nombre</a></span>
+        <span name="subastaLink"><a href="$subasta.LinkDelete">Eliminar subasta</a></span>
         <div name="subastaDetalle">
             <p>Lotes:</p>
             <ul>

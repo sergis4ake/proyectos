@@ -18,6 +18,12 @@ public class PagoCtrl {
 
     public static ModelAndView realizarPago(Request req){
 
+        /**
+         * FALTA:
+         * Guardar en la BBDD la informacion recogida dentro del objeto "pago" creado.
+         * Implementar funcion que comprueba los datos recogidos.
+         */
+
         Pago pago = new Pago(req.queryParams("tipoPago"), req.queryParams("cardnum"), req.queryParams("segnum"),
                 req.queryParams("nomcard"), req.queryParams("nombrePago"), req.queryParams("apellidoPago"),
                 req.queryParams("callePago"), req.queryParams("numeroPago"), req.queryParams("codPostalPago"),
@@ -27,7 +33,7 @@ public class PagoCtrl {
 
         Map<String, Object> model = new HashMap<>();
 
-        if (pago.comprobarPago()) {
+        if (pago.comprobarPago()) { //Funcion que comprueba los datos recogidos del formulario.     COMPLETAR METODO.
 
             model.put("success", "Pago registrado correctamente.");
             return new ModelAndView(model, "templates/pagos/lista_subastas.htm");

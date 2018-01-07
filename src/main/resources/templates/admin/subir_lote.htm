@@ -3,12 +3,8 @@
 <div name="contenedor">
     <form enctype="multipart/form-data" method="post" action="subirLote">
 
-        <label for="subasta">Subasta</label><br />
-        <select id="subasta" name="subasta">
-            #foreach ($subasta in $subastas)
-                <option value=$subasta.Id>$subasta.Titulo</option>
-            #end
-        </select>
+        <span name="subasta">$subasta.Titulo</span><br />
+        <input type="hidden" name="id" value="$subasta.Id">
 
         <label for="lote">Lote</label><br />
         <input id="lote" name="lote" type="text" placeholder="Type Here" >

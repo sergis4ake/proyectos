@@ -3,7 +3,6 @@ package controladores;
 import modelos.Subasta;
 import modelos.Lote;
 import modelos.Puja;
-import org.apache.commons.lang.ArrayUtils;
 import spark.ModelAndView;
 import spark.Request;
 
@@ -14,6 +13,14 @@ import java.util.Map;
 public class SubastaCtrl {
     public static ModelAndView mostrarSubastas(Request req){
 
+        /**
+         * Recoger listado de subastas y mostrarlo en array "subastas"
+         *
+         * Primero, consultar numero de subastas totales.
+         * Segundo, crear un array de subastas con el numero obtenido.
+         */
+
+        /*
         Puja puja = new Puja(1, 333, 1);
         Puja puja2 = new Puja(3, 111, 3);
         ArrayList<Puja> pujas = new ArrayList<>();
@@ -35,17 +42,24 @@ public class SubastaCtrl {
         subastas[4] = new Subasta(5, "Moneda de 20 cent");
 
         Map<String, Object> model = new HashMap<>();
+        model.put("subastas", subastas);*/
+
+        Subasta subasta = new Subasta("subasta de la base d datos");
+        Subasta [] subastas = new Subasta[1];
+
+        Map<String, Object> model = new HashMap<>();
         model.put("subastas", subastas);
 
         return new ModelAndView(model, "templates/subastas/lista_subastas.htm");
     }
     public static ModelAndView mostrarSubasta(Request req){
-        String idSubasta = req.params("id");
 
         /**
          * Recoger datos sobre la subasta desde la base de datos mediante el ID.
+         *
+         * Lo que hay comentado son datos metidos directamente para probar si funciona.
          */
-
+        /*
         Puja puja = new Puja(1, 333, 1);
         Puja puja2 = new Puja(3, 111, 3);
         ArrayList<Puja> pujas = new ArrayList<>();
@@ -57,15 +71,17 @@ public class SubastaCtrl {
         lotes[1] = new Lote(2, "Moneda de 1€", 120, pujas);
         lotes[2] = new Lote(3, "Moneda de 50 cent", 130, pujas);
         lotes[3] = new Lote(4, "Moneda de 2€", 140, pujas);
-        lotes[4] = new Lote(5, "Moneda de 20 cent", 150, pujas);
+        lotes[4] = new Lote(5, "Moneda de 20 cent", 150, pujas);*/
 
+        int idSubasta = Integer.parseInt(req.params("id"));
 
-        Subasta subasta = new Subasta(Integer.parseInt(idSubasta), "Billetes de 100€", lotes);
+        Subasta subasta = new Subasta(idSubasta);
+        subasta.downloadFromBBDD();     //Conexion con BBDD mediante el ID buscamos los datos y los descargamos en el objeto.
+
         Map<String, Object> model = new HashMap<>();
-
         model.put("subasta", subasta);
 
-        return new ModelAndView(model, "templates/subastas/subasta.htm");
+        return new ModelAndView(model, "templates/subastas/lista_lotes.htm");
 
     }
 
@@ -100,6 +116,6 @@ public class SubastaCtrl {
          */
         model.put("subasta", subasta);
         model.put("lotes", lotes);
-        return new ModelAndView(model, "templates/subastas/subasta.htm");
+        return new ModelAndView(model, "templates/subastas/lista_lotes.htm");
     }
 }

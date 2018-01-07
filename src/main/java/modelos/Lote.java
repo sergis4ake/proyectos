@@ -36,10 +36,16 @@ public class Lote {
         this.pujas = pujas;
     }
 
-    public void loadToBBDD(){
-        /**
-         * CONEXION CON BASE DE DATOS PARA CARGAR LOS DATOS.
-         */
+    public String getLinkEdit(){
+        return "editarLote/" + id;
+    }
+
+    public String getLinkRemove(){
+        return "eliminarLote/" + id;
+    }
+
+    public String getLinkNew(){
+        return "subirLote";
     }
 
     public int getId() {

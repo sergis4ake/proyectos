@@ -1,0 +1,32 @@
+#parse("templates/comun/cabecera.htm")
+#parse("templates/comun/aviso.htm")
+
+<h2>Subasta $subasta.Id - $subasta.Titulo</h2>
+
+<div name="contenedor">
+
+    #foreach($lote in $subasta.Lotes)
+    <div name="loteCompleto">
+        <div name="loteDetalle">
+            <span name="loteNombre">$lote.Id - $lote.Titulo</span>
+
+            <span name="loteLink"><a href="$lote.LinkEdit">Editar lote</a></span>
+            <span name="loteLink"><a href="$lote.LinkDelete">Eliminar lote</a></span>
+
+            <span name="lotePrecio">Precio base: $lote.Precio</span>
+            <div name="lotePujas">
+                <p>Pujas:</p>
+                <ul>
+                    #foreach($puja in $lote.Pujas)
+                    <li>$puja.Valor</li>
+                    #end
+                </ul>
+            </div>
+        </div>
+
+        <div name="imagenLote">Aquí va la imagen del lote.</div>
+    </div>
+    <br/>
+    #end
+    <span name="loteLink"><a href="$lote.LinkNew/$subasta.Id">Nuevo lote</a></span>
+</div>
