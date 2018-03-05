@@ -1,0 +1,19 @@
+#parse("templates/comun/aviso.htm")
+
+<div name="contenedor">
+    <form method="post" action="/editarSubasta">
+        <span name="subasta">Formulario para Editar una Subasta</span><br />
+        <input hidden="hidden" name="id" value="$subasta.IdSubasta">
+
+        <br /><label for="titulo">Titulo</label>
+        <input id="titulo" name="titulo" value="$subasta.Titulo" type="text" placeholder="Type Here" required>
+
+        <br /><label for="finalizacion">Finalizacion</label>
+        <input id="finalizacion" name="finalizacion" type="date" value="$subasta.Finalizacion" placeholder="Type Here" required>
+
+        <br /><input id="editar" name="editar" type="submit" value="Editar">
+
+    </form>
+
+
+</div>

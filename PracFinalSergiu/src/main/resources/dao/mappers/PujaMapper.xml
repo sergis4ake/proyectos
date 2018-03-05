@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mappers.PujaMapper">
+    <resultMap id="pujaMap" type="Puja">
+
+        <id property="idPuja" column="id_puja"/>
+        <result property="idLote" column="id_lote"/>
+        <result property="email" column="email"/>
+        <result property="importe" column="importe"/>
+        <result property="fecha" column="fecha"/>
+    </resultMap>
+
+    <select id="select" resultMap="pujaMap" parameterType="Long">
+        SELECT * FROM pujas WHERE id_puja = #{idPuja}
+    </select>
+
+    <select id="selectDeLote" resultMap="pujaMap" parameterType="Long">
+        SELECT * FROM pujas WHERE id_lote = #{idLote}
+    </select>
+    <select id="selectAll" resultMap="pujaMap" >
+        SELECT * FROM pujas
+    </select>
+
+    <insert id="insert">
+            INSERT INTO pujas
+				(id_lote, email, importe, fecha)
+			VALUES
+				(#{idLote}, #{email}, #{importe}, #{fecha})
+
+    </insert>
+
+</mapper>
+

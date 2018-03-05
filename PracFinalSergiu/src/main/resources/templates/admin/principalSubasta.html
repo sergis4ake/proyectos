@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+PAGINA PRINCIPAL CON EL MENU
+-->
+<html>
+    <head>
+        <title>Pagina Principal</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+
+        <script>
+            function abrir() {
+                // para que abra la pagina de mostrar lotes o historial o lo que queramos, ésta no va bien
+                windows.open("file:///C:/Users/miguel/Downloads/PracFinal/src/main/resources/templates/subastas/lista_subastas.htm")
+            }
+
+        </script>    
+
+
+    </head>
+    <body>
+        <input type="button" value="Abrir ventana---" onclick="abrir()"> 
+        <h1 class="h1"> Pagina Principal: - Subasta - </h1><br>
+
+        <table width="280" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A"> 
+            <tr> 
+                <td><font color="#FFFFFF" face="arial, verdana, helvetica"> 
+                    <b> Lotes de la subasta</b> 
+                    </font></td> 
+            </tr> 
+            <tr> 
+                <td bgcolor="#ffffcc"> 
+                    <font face="arial, verdana, helvetica"> 
+
+
+                    <!--
+                    cuando la bbdd este con datos se supone q lo muestra, hay q comprobarlo
+                    -->
+
+                    <div name="contenedor">
+
+                        #foreach( $subasta in $subastas )
+                        <div name="subastaCompleta">
+                            <span name="subastaTitulo">$subasta.Id - <a href="$subasta.Link">$subasta.Titulo</a></span>
+                            <div name="subastaDetalle">
+                                <p>Lotes:</p>
+                                <ul>
+                                    #foreach ($lote in $subasta.Lotes)
+                                    <li>$lote.Titulo</li>
+                                    #end
+                                </ul>
+                            </div>
+                            <div name="subastaImagen"></div>
+                            <span name="subastaLink"><a href="$subasta.Link">Ver detalles</a></span>
+                        </div>
+                        <br/>
+                        #end
+                    </div>
+
+
+
+
+
+                    </font>
+                    <br>
+
+
+                    <br /><label for="pujar"> ID del Lote a Pujar </label>
+                    <input id="pujar" name="pujar" type="text" placeholder="Type Here" required>
+
+                    <br /><label for="precioPuja"> Precio a Pujar </label>
+                    <input id="precioPuja" name="precioPuja" type="text" placeholder="Type Here" required>
+
+                    <br /><label for="email"> Email </label>
+                    <input id="email" name="email" type="email" placeholder="Type Here" required>
+
+                    
+                    <br />
+                    <script>
+                        var f = new Date();
+                        document.write(f.getHours() + ":" + (f.getMinutes()+ 1) + ":" + f.getSeconds());
+                        
+                    </script>
+
+
+
+
+                    <br /><input id="pujar" name="pujar" type="submit" value="PUJAR">
+
+                    <script>
+                        //para darle a pujar que expirado=false y deje pujar y llamar a la funcion actualizarPuja(id,precioPuja) o algo asi
+
+                    </script>
+
+                </td> 
+
+            </tr> 
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            </head>
+            <body>
+
+                <p id="demo"></p>
+                <script>
+
+                    //meterle el tiempo de ese billete o moneda que recibe al sacarlo de la bbdd
+                    var countDownDate = new Date("Jan 15, 2018 15:37:25").getTime();
+                    var expirado = false;
+                    // Update the count down every 1 second
+                    var x = setInterval(function () {
+
+                        // Get todays date and time
+                        var now = new Date().getTime();
+
+                        // Find the distance between now an the count down date
+                        var distance = countDownDate - now;
+
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Output the result in an element with id="demo"
+                        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                                + minutes + "m " + seconds + "s ";
+
+                        // termina el contador
+                        if (distance < 0) {
+                            clearInterval(x);
+                            document.getElementById("demo").innerHTML = "EXPIRED";
+                            expirado = true;
+                            //evitar q deje pujar mas
+
+                        }
+                    }, 1000);
+                </script>
+        </table>
+
+
+
+
+    </body>
+</html>

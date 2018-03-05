@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mappers.UsuarioMapper">
+    <resultMap id="usuarioMap" type="Usuario">
+
+        <id property="email" column="email"/>
+        <result property="contrasenna" column="contrasenna"/>
+        <result property="nombre" column="nombre"/>
+        <result property="apellidos" column="apellido"/>
+        <result property="telefono" column="telefono"/>
+        <result property="codPostal" column="cod_postal"/>
+        <result property="ciudad" column="ciudad"/>
+        <result property="codSeguridad" column="cod_seguridad"/>
+        <result property="tipoTarjeta" column="tipo_tarjeta"/>
+        <result property="calle" column="calle"/>
+        <result property="admin" column="admin"/>
+        <result property="dni" column="dni"/>
+        <result property="numTarjeta" column="num_tarjeta"/>
+    </resultMap>
+
+    <select id="select" resultMap="usuarioMap" parameterType="Usuario">
+        SELECT * FROM usuarios WHERE email = #{email}
+    </select>
+    <insert id="insert" parameterType="Usuario">
+        INSERT INTO usuarios
+            (email, contrasenna, nombre, apellidos,
+                telefono, ciudad, cod_postal,
+                dni, calle, admin, num_tarjeta, cod_seguridad, tipo_tarjeta)
+        VALUES
+            (#{email}, #{contrasenna}, #{nombre}, #{apellidos},
+                #{telefono}, #{ciudad}, #{codPostal},
+                #{dni}, #{calle}, #{admin}, #{numTarjeta}, #{codSeguridad}, #{tipoTarjeta})
+
+    </insert>
+
+</mapper>
+

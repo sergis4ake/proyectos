@@ -1,0 +1,47 @@
+#parse("templates/comun/cabecera.htm")
+#parse("templates/comun/aviso.htm")
+
+<h2>$subasta.Titulo</h2>
+
+<div name="contenedor">
+
+    #foreach($lote in $subasta.Lotes)
+    <div name="loteCompleto">
+        <div name="loteDetalle">
+            <span name="loteNombre">$lote.Valor</span>
+
+            <span name="lotePrecio">Precio base: $lote.Precio</span>
+            <span name="lotePrecio">Tipo: $lote.Tipo</span>
+            <span name="lotePrecio">Valor: $lote.Valor</span>
+            <span name="lotePrecio">Año: $lote.Anno</span>
+            <span name="lotePrecio">Conservacion: $lote.Conservacion</span>
+            #if ($lote.Tipo == "Moneda")
+                <span name="lotePrecio">Serie: $lote.Serie</span>
+            #else
+                <span name="lotePrecio">Estrella: $lote.Estrella</span>
+            #end
+            <span name="lotePrecio">Fecha: $lote.FechaLote</span>
+            <div name="lotePujas">
+                <p>Pujas:</p>
+            </div>
+            <ul>
+                #foreach($puja in $lotes.Pujas)
+                <li>$puja.Importe</li>
+                #end
+            </ul>
+        </div>
+
+        <div name="imagenLote">Aquí va la imagen del lote.</div>
+
+        <div name="loteForm">
+            <form action="/subasta/$lote.IdLote" method="post">
+                <input type="hidden" name="idLote" value=$lote.IdLote>
+                <input type="text" name="importe">
+                <input type="submit" name="botonPuja" value="Pujar">
+            </form>
+        </div>
+    </div>
+    <br/>
+    #end
+
+</div>

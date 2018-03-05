@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mappers.LoteMapper">
+    <resultMap id="loteMap" type="Lote">
+        <id property="idLote" column="id_lote"/>
+        <result property="tipo" column="tipo"/>
+        <result property="valor" column="valor"/>
+        <result property="precio" column="precio"/>
+        <result property="foto" column="foto"/>
+        <result property="anno" column="anno"/>
+        <result property="serie" column="serie"/>
+        <result property="estrellas" column="estrellas"/>
+        <result property="conservacion" column="conservacion"/>
+        <result property="fechaLote" column="fecha_lote"/>
+        <result property="idSubasta" column="id_subasta"/>
+        <collection property="pujas" javaType="ArrayList" ofType="Puja" column="id_lote" select="dao.mappers.PujaMapper.selectDeLote"/>
+
+    </resultMap>
+
+    <select id="selectAll" resultMap="loteMap">
+        SELECT * FROM lotes
+    </select>
+    <select id="selectDeSubasta" resultMap="loteMap" parameterType="Long">
+        SELECT * FROM lotes WHERE id_subasta = #{idSubasta}
+    </select>
+    <select id="select" resultMap="loteMap" parameterType="Long">
+        SELECT * FROM lotes WHERE id_lote = #{idLote}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO lotes
+          (tipo, valor, precio, foto, anno, conservacion,
+            serie, estrellas, fecha_lote, id_subasta)
+        VALUES
+          (#{tipo}, #{valor}, #{precio},  #{foto}, #{anno}, #{conservacion},
+            #{serie}, #{estrellas}, #{fechaLote}, #{idSubasta})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM lotes WHERE id_lote = #{idLote}
+    </delete>
+
+</mapper>
+

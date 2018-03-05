@@ -1,0 +1,77 @@
+#parse("templates/comun/aviso.htm")
+
+<div name="contenedor">
+    <form enctype="multipart/form-data" method="post" action="/subirLote">
+
+        <span name="subasta">Formulario para Guardar Lote</span><br />
+
+        <label for="subasta">Elegir subasta</label><br />
+        <select id="subasta" name="subasta">
+            #foreach($subasta in $subastas)
+            <option value="$subasta.IdSubasta">$subasta.Titulo</option>
+            #end
+        </select>
+
+        <br /><span>Tipo de Lote : </span>
+        <input type="radio" name="tipo" id="myCheck" onclick="myFunction()" value="Billete">
+        <label for="myCheck">Billete</label>
+        <p id="tipo" style="display:none">
+            <label for="serie">Serie</label>
+            <input id="serie" name="serie" type="text">
+        </p>
+        <br />
+        <input type="radio" name="tipo" id="myCheck1" value="Moneda" onclick="myFunction()">
+        <label for="myCheck1">Moneda</label>
+        <p id="tipo1" style="display:none">
+            <label for="estrellas">Estrellas</label>
+            <input id="estrellas" name="estrellas" type="text">
+        </p>
+
+        <script>
+            function myFunction() {
+                var checkBox = document.getElementById("myCheck");
+                var checkBox1 = document.getElementById("myCheck1");
+                var tipo = document.getElementById("tipo");
+                var tipo1 = document.getElementById("tipo1");
+
+                if (checkBox.checked == true) {
+                    tipo.style.display = "block";
+                    tipo1.style.display = "none";
+                } else if (checkBox1.checked == true) {
+                    tipo1.style.display = "block";
+                    tipo.style.display = "none";
+                } else {
+                    tipo.style.display = "none";
+                    tipo1.style.display = "none";
+                }
+            }
+        </script>
+
+        <br /><label for="valor">Valor</label>
+        <input id="valor" name="valor" type="text" placeholder="Type Here" required>
+
+        <br /><label for="anno">Anio</label>
+        <input id="anno" name="anno" type="text" placeholder="Type Here" required>
+
+        <br /><label for="fechaLote">Fecha del Lote</label>
+        <input id="fechaLote" name="fechaLote" type="date">
+
+        <br /><label for="conservacion">Conservacion</label>
+        <select id="conservacion" name="conservacion">
+            <option value="BC">BC</option>
+            <option value="MBC">MBC</option>
+            <option value="EBC">EBC</option>
+            <option value="SC">SC</option>
+        </select>
+
+        <br /><label for="precio">Precio</label>
+        <input id="precio" name="precio" type="text" placeholder="Type Here" required>
+
+        <br /><label for="foto">Foto</label>
+        <input type="file" name="foto" id="foto">
+        <output id="fotoInfo"></output>
+        <br />
+        <input id="enviar" name="enviar" type="submit" value="Enviar">
+
+    </form>
+</div>

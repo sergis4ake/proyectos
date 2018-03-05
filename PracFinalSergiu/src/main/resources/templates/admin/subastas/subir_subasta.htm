@@ -1,0 +1,18 @@
+#parse("templates/comun/aviso.htm")
+
+<div name="contenedor">
+    <form method="post" action="/subirSubasta">
+        <span name="subasta">Formulario para Subir una Subasta</span><br />
+
+        <br /><label for="titulo">Titulo</label>
+        <input id="titulo" name="titulo" type="text" placeholder="Type Here" required>
+
+        <br /><label for="finalizacion"> Finalizacion </label>
+        <input id="finalizacion" name="finalizacion" type="date" placeholder="Type Here" required>
+
+        <br /><input id="enviar" name="enviar" type="submit" value="Enviar">
+
+    </form>
+
+
+</div>

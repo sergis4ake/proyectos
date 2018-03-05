@@ -1,0 +1,18 @@
+#parse("templates/comun/cabecera.htm")
+#parse("templates/comun/aviso.htm")
+
+<h2>Lista de subastas</h2>
+
+<div name="contenedor">
+
+    #foreach( $subasta in $subastas )
+    <div name="subastaCompleta">
+        <span name="subastaTitulo">$subasta.IdSubasta - $subasta.Titulo</></span>
+        <span name="subastaLink"><a href="$subasta.LinkEdit">Editar nombre</a></span>
+        <span name="subastaLink"><a href="$subasta.LinkDelete">Eliminar subasta</a></span>
+        <div name="subastaImagen"></div>
+    </div>
+    <br/>
+    #end
+    <span name="subastaLink"><a href="/subirSubasta">Nueva subasta</a></span>
+</div>

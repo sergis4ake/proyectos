@@ -1,0 +1,49 @@
+#parse("templates/comun/aviso.htm")
+
+<h1> Registro de usuario. </h1>
+
+<div name="contenedor">
+    <form action="/registrar" id="formRegistro" method="post">
+        <span>Register and participate in the auctions</span>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+
+            <label for="contrasenna">Contraseña</label>
+            <input type="password" id="contrasenna" name="contrasenna">
+
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos">
+
+            <label for="ciudad">Ciudad</label>
+            <input type="text" id="ciudad" name="ciudad">
+            <label for="codPostal">Codigo Postal</label>
+            <input type="text" id="codPostal" name="codPostal">
+
+            <label for="dni">DNI</label>
+            <input type="text" id="dni" name="dni">
+            <label for="calle">Calle</label>
+            <input type="text" id="calle" name="calle">
+
+            <label for="telefono">Telefono</label>
+            <input type="number" id="telefono" name="telefono">
+        <br/>
+        <span>Please enter your payment details:</span>
+        <div name="formRegistro">
+            <span>Payment method </span>
+            <input type="radio" name="tipoTarjeta" id="visa" value="VISA">
+            <label for="visa">VISA</label>
+            <input type="radio" name="tipoTarjeta" id="master" value="Mastercard">
+            <label for="master">Master Card</label>
+
+            <label for="numTarjeta">Card Number</label>
+            <input type="number" id="numTarjeta" name="numTarjeta">
+            <label for="codSeguridad">Security no</label>
+            <input type="number" id="codSeguridad" name="codSeguridad">
+        </div>
+        <br/>
+        <input type="submit" value="Register now">
+    </form>
+</div>

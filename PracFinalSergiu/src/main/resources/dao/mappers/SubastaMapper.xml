@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mappers.SubastaMapper">
+    <resultMap id="subastaMap" type="Subasta">
+
+        <id property="idSubasta" column="id_subasta"/>
+        <result property="titulo" column="titulo"/>
+        <result property="finalizacion" column="finalizacion"/>
+        <!--
+        <collection
+            property : propiedad de la clase Subasta donde va a cargar esta colleccion
+            javaType y ofType: Indican el tipo de dato de la propiedad
+            select : consulta que va a recoger esa colecion
+            column : el parametro que se mandará al select como foreign key para hacer la consulta
+        -->
+        <collection property="lotes" javaType="ArrayList" ofType="Lote" column="id_subasta" select="dao.mappers.LoteMapper.selectDeSubasta"/>
+
+    </resultMap>
+
+    <select id="selectAll" resultMap="subastaMap">
+        SELECT * FROM subastas
+    </select>
+    <select id="select" resultMap="subastaMap" parameterType="Long">
+        SELECT * FROM subastas WHERE id_subasta = #{idSubasta}
+    </select>
+    <insert id="insert" parameterType="Subasta">
+        INSERT INTO subastas
+          (titulo, finalizacion)
+          VALUES (#{titulo}, #{finalizacion,jdbcType=DATE})
+    </insert>
+
+    <update id="update" parameterType="Subasta">
+        UPDATE subastas
+        SET
+            titulo = #{titulo},
+            finalizacion = #{finalizacion,jdbcType=DATE}
+        WHERE
+            id_subasta = #{idSubasta}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM subastas WHERE id_subasta = #{idSubasta}
+    </delete>
+
+</mapper>
+
